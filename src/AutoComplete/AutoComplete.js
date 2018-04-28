@@ -181,8 +181,10 @@ class AutoComplete extends Component {
     fullWidth: false,
     open: false,
     openOnFocus: false,
-    onUpdateInput: () => {},
-    onNewRequest: () => {},
+    onUpdateInput: () => {
+    },
+    onNewRequest: () => {
+    },
     searchText: '',
     menuCloseDelay: 300,
     targetOrigin: {
@@ -265,14 +267,13 @@ class AutoComplete extends Component {
     const chosenRequest = dataSource[index];
     const searchText = this.chosenRequestText(chosenRequest);
 
-    this.props.onNewRequest(chosenRequest, index);
-
     this.timerTouchTapCloseId = setTimeout(() => {
+      this.timerTouchTapCloseId = null;
       this.setState({
         searchText: searchText,
       });
       this.close();
-      this.timerTouchTapCloseId = null;
+      this.props.onNewRequest(chosenRequest, index);
     }, this.props.menuCloseDelay);
   };
 
@@ -386,6 +387,7 @@ class AutoComplete extends Component {
       hintText,
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
+      textFieldStyle,
       menuStyle,
       menuProps,
       listStyle,
@@ -435,7 +437,7 @@ class AutoComplete extends Component {
 
             const itemValue = item[this.props.dataSourceConfig.value];
             if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
-               itemValue.type.muiName === Divider.muiName)) {
+              itemValue.type.muiName === Divider.muiName)) {
               requestsList.push({
                 text: itemText,
                 value: React.cloneElement(itemValue, {
@@ -459,7 +461,7 @@ class AutoComplete extends Component {
           break;
 
         default:
-          // Do nothing
+        // Do nothing
       }
 
       return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults);
@@ -485,7 +487,7 @@ class AutoComplete extends Component {
     );
 
     return (
-      <div style={prepareStyles(Object.assign(styles.root, style))} >
+      <div style={prepareStyles(Object.assign(styles.root, style))}>
         <TextField
           {...other}
           ref="searchTextField"
@@ -500,6 +502,10 @@ class AutoComplete extends Component {
           fullWidth={fullWidth}
           multiLine={false}
           errorStyle={errorStyle}
+          style={textFieldStyle}
+          inputStyle={{color: textFieldStyle.color}}
+          hintStyle={{color: textFieldStyle.color}}
+          underlineStyle={{display: 'none'}}
         />
         <Popover
           style={styles.popover}
@@ -515,7 +521,8 @@ class AutoComplete extends Component {
           {menu}
         </Popover>
       </div>
-    );
+    )
+      ;
   }
 }
 

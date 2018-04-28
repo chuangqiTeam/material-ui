@@ -7,7 +7,7 @@ import Popover from '../Popover/Popover';
 import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
 
 const anchorOrigin = {
-  vertical: 'top',
+  vertical: 'bottom',
   horizontal: 'left',
 };
 
@@ -41,8 +41,8 @@ function getStyles(props, context) {
       top: 0,
     },
     labelWhenOpen: {
-      opacity: 0,
-      top: (spacing.desktopToolbarHeight / 8),
+      opacity: 1,
+      // top: (spacing.desktopToolbarHeight / 8),
     },
     root: {
       display: 'inline-block',
@@ -57,7 +57,7 @@ function getStyles(props, context) {
       opacity: 1,
     },
     underline: {
-      borderTop: `solid 1px ${accentColor}`,
+      // borderTop: `solid 1px ${accentColor}`,
       bottom: 1,
       left: 0,
       margin: `-1px ${spacing.desktopGutter}px`,

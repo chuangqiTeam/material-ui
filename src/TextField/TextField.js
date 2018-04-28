@@ -18,7 +18,7 @@ const getStyles = (props, context, state) => {
       floatingLabelColor,
       focusColor,
       textColor,
-      disabledTextColor,
+      disabledTextColor = '#788294',
       backgroundColor,
       hintColor,
       errorColor,
@@ -27,7 +27,7 @@ const getStyles = (props, context, state) => {
 
   const styles = {
     root: {
-      fontSize: 16,
+      fontSize: '1rem',
       lineHeight: '24px',
       width: props.fullWidth ? '100%' : 256,
       height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
@@ -61,8 +61,7 @@ const getStyles = (props, context, state) => {
       cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
     },
-    textarea: {
-    },
+    textarea: {},
   };
 
   Object.assign(styles.error, props.errorStyle);
@@ -491,7 +490,7 @@ class TextField extends Component {
           <TextFieldHint
             muiTheme={this.context.muiTheme}
             show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
-                  (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
+            (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
             style={hintStyle}
             text={hintText}
           /> :

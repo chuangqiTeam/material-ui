@@ -14,7 +14,8 @@ function getStyles(props, context, state) {
 
   return {
     root: {
-      borderBottom: props.displayBorder && `1px solid ${tableRow.borderColor}`,
+      // borderBottom: props.displayBorder && `1px solid ${tableRow.borderColor}`,
+      borderBottom: props.displayBorder && '1px dashed ' + '#eee',
       color: tableRow.textColor,
       height: tableRow.height,
     },

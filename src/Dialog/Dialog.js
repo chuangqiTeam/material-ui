@@ -96,7 +96,7 @@ function getStyles(props, context) {
       position: 'fixed',
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      zIndex: zIndex.dialog,
+      zIndex: 998,
       top: 0,
       left: open ? 0 : -10000,
       width: '100%',

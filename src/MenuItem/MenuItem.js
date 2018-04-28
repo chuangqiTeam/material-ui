@@ -20,8 +20,10 @@ function getStyles(props, context) {
     root: {
       color: props.disabled ? disabledColor : textColor,
       cursor: props.disabled ? 'not-allowed' : 'inherit',
-      lineHeight: props.desktop ? '32px' : '48px',
-      fontSize: props.desktop ? 15 : 16,
+      // lineHeight: props.desktop ? '32px' : '48px',
+      // fontSize: props.desktop ? 15 : 16,
+      lineHeight: '32px',
+      fontSize: '1rem',
       whiteSpace: 'nowrap',
     },
 
@@ -238,7 +240,7 @@ class MenuItem extends Component {
     const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 
     // Left Icon
-    let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon /> : null;
+    let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon/> : null;
     if (leftIconElement) {
       const mergedLeftIconStyles = desktop ?
         Object.assign(styles.leftIconDesktop, leftIconElement.props.style) : leftIconElement.props.style;
@@ -258,7 +260,7 @@ class MenuItem extends Component {
     if (secondaryText) {
       const secondaryTextIsAnElement = React.isValidElement(secondaryText);
       const mergedSecondaryTextStyles = secondaryTextIsAnElement ?
-      Object.assign(styles.secondaryText, secondaryText.props.style) : null;
+        Object.assign(styles.secondaryText, secondaryText.props.style) : null;
 
       secondaryTextElement = secondaryTextIsAnElement ?
         React.cloneElement(secondaryText, {style: mergedSecondaryTextStyles}) :
@@ -274,12 +276,27 @@ class MenuItem extends Component {
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
         >
-          <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
+          <Menu
+            desktop={desktop}
+            disabled={disabled}
+            style={nestedMenuStyle}
+            onMouseLeave={this.handleRequestClose}
+            onMouseEnter={this.handleTouchTap}
+          >
             {React.Children.map(menuItems, this.cloneMenuItem)}
           </Menu>
         </Popover>
       );
-      other.onTouchTap = this.handleTouchTap;
+
+      // other.onTouchTap = this.handleTouchTap;
+
+      if (menuItems) {
+        other.onMouseEnter = this.handleTouchTap;
+        other.onMouseLeave = this.handleRequestClose;
+      } else {
+        other.onTouchTap = this.handleTouchTap;
+      }
+
     }
 
     return (

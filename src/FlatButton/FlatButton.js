@@ -232,7 +232,7 @@ class FlatButton extends Component {
     const mergedLabelStyles = Object.assign({
       letterSpacing: 0,
       textTransform: textTransform,
-      fontWeight: fontWeight,
+      fontWeight: 'normal',
       fontSize: fontSize,
     }, labelStyleIcon, labelStyle);
 

@@ -36,7 +36,8 @@ function getStyles(props, context, state) {
   const amount = (primary || secondary) ? 0.4 : 0.08;
 
   let backgroundColor = raisedButton.color;
-  let labelColor = raisedButton.textColor;
+  // let labelColor = raisedButton.textColor;
+  let labelColor = '#000';
 
   if (disabled) {
     backgroundColor = disabledBackgroundColor || raisedButton.disabledColor;
@@ -57,21 +58,25 @@ function getStyles(props, context, state) {
   }
 
   const buttonHeight = style && style.height || button.height;
-  const borderRadius = 2;
+  const borderRadius = 3;
 
   return {
     root: {
+      boxShadow: 'none',
+      minWidth: fullWidth ? '100%' : button.minWidth,
       display: 'inline-block',
       transition: transitions.easeOut(),
-      minWidth: fullWidth ? '100%' : button.minWidth,
+      borderRadius: '3px',
     },
     button: {
       position: 'relative',
-      height: buttonHeight,
-      lineHeight: `${buttonHeight}px`,
+      // height: buttonHeight,
+      // lineHeight: `${buttonHeight}px`,
+      height: '27px',
+      lineHeight: '27px',
       width: '100%',
       padding: 0,
-      borderRadius: borderRadius,
+      borderRadius: '3px',
       transition: transitions.easeOut(),
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
@@ -83,23 +88,28 @@ function getStyles(props, context, state) {
       fontSize: raisedButton.fontSize,
       letterSpacing: 0,
       textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
-      fontWeight: raisedButton.fontWeight,
+      // fontWeight: raisedButton.fontWeight,
+      fontWeight: 'normal',
       margin: 0,
       userSelect: 'none',
-      paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
-      paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+      // paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+      // paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+      paddingLeft: '15px',
+      paddingRight: '15px',
       color: labelColor,
     },
     icon: {
       verticalAlign: 'middle',
-      marginLeft: label && labelPosition !== 'before' ? 12 : 0,
-      marginRight: label && labelPosition === 'before' ? 12 : 0,
+      // marginLeft: label && labelPosition !== 'before' ? 12 : 0,
+      // marginRight: label && labelPosition === 'before' ? 12 : 0,
+      marginLeft: '15px',
+      marginRight: label && labelPosition === 'before' ? 10 : 0
     },
     overlay: {
       height: buttonHeight,
       borderRadius: borderRadius,
       backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
-        fade(labelColor, amount),
+      fade(labelColor, amount),
       transition: transitions.easeOut(),
       top: 0,
     },
@@ -368,15 +378,15 @@ class RaisedButton extends Component {
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-    {
-      labelElement,
-      iconCloned,
-      children,
-    } : {
-      children,
-      iconCloned,
-      labelElement,
-    };
+      {
+        labelElement,
+        iconCloned,
+        children,
+      } : {
+        children,
+        iconCloned,
+        labelElement,
+      };
 
     const enhancedButtonChildren = createChildFragment(childrenFragment);
 

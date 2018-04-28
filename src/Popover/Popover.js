@@ -209,7 +209,8 @@ class Popover extends Component {
       height: el.offsetHeight,
     };
 
-    a.right = rect.right || a.left + a.width;
+    // a.right = rect.right || a.left + a.width;
+    a.right = rect.right - 20 || a.left + a.width - 20;
     a.bottom = rect.bottom || a.top + a.height;
     a.middle = a.left + ((a.right - a.left) / 2);
     a.center = a.top + ((a.bottom - a.top) / 2);

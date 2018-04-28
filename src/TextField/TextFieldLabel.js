@@ -13,10 +13,11 @@ function getStyles(props) {
     transformOrigin: 'left top',
     pointerEvents: 'auto',
     userSelect: 'none',
+    fontSize: '1.3rem',
   };
 
   const shrinkStyles = props.shrink ? Object.assign({
-    transform: 'perspective(1px) scale(0.75) translate3d(0, -28px, 0)',
+    transform: 'perspective(1px) scale(0.8) translate3d(0, -28px, 0)',
     pointerEvents: 'none',
   }, props.shrinkStyle) : null;
 

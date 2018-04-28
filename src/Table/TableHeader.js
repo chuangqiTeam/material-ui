@@ -7,7 +7,8 @@ function getStyles(props, context) {
 
   return {
     root: {
-      borderBottom: `1px solid ${tableHeader.borderColor}`,
+      // borderBottom: `1px solid ${tableHeader.borderColor}`,
+      borderBottom: '1px dashed ' + '#eee',
     },
   };
 }
